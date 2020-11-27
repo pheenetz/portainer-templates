@@ -962,6 +962,31 @@
 			}]
 		},
 		{
+			"type": 2,
+			"title": "phee - Wordpress",
+			"description": "Wordpress setup with a MySQL database and reverse proxy",
+			"note": "Deploys a Wordpress instance connected to a MySQL database.",
+			"categories": [
+				"CMS"
+			],
+			"platform": "linux",
+			"logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
+			"repository": {
+				"url": "https://github.com/portainer/templates",
+				"stackfile": "stacks/phee/wordpress/docker-stack.yml"
+			},
+			"env": [{
+				"name": "HOST",
+				"label": "Host",
+				"description": "e.g. my-wordpress-site.06.phee.host"
+			}],
+			"env": [{
+				"name": "MYSQL_DATABASE_PASSWORD",
+				"label": "Database root password",
+				"description": "Password used by the MySQL root user."
+			}]
+		},
+		{
 			"type": 3,
 			"title": "Wordpress",
 			"description": "Wordpress setup with a MySQL database",
