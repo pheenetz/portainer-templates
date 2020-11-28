@@ -870,7 +870,7 @@
       ]
     },
     {
-      "type": 2,
+      "type": 3,
       "title": "phee - Wordpress",
       "description": "Wordpress setup with a MySQL database and reverse proxy",
       "note": "Deploys a Wordpress instance connected to a MySQL database.",
@@ -879,7 +879,7 @@
       "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
       "repository": {
         "url": "https://github.com/pheenetz/portainer-templates",
-        "stackfile": "stacks/phee/wordpress/docker-stack.yml"
+        "stackfile": "stacks/phee/wordpress/docker-compose.yml"
       },
       "env": [
         {
