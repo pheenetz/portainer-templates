@@ -1,0 +1,63 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    networks:
+      - internal
+  wp:
+    image: wordpress:latest
+    volumes:
+      - wp_content:/var/www/html/wp-content
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${ID}.rule=Host(`${HOST}`)"
+      - "traefik.http.routers.${ID}.entrypoints=websecure"
+      - "traefik.http.services.${ID}.loadbalancer.server.port=80"
+      - "traefik.http.routers.${ID}.service=${ID}"
+      - "traefik.http.routers.${ID}.tls.certresolver=leresolver"
+    networks:
+      - internal
+      - traefik
+  ssh:
+    image: ghcr.io/linuxserver/openssh-server
+    environment:
+      - PUID=33
+      - PGID=33
+      - TZ=Europe/Berlin
+      - PASSWORD_ACCESS=true
+      - USER_NAME=${ID}
+      - USER_PASSWORD=${SSH_PASSWORD}
+    volumes:
+      - ssh_config:/config
+    ports:
+      - ${SSH_PORT}:2222
+    restart: always
+
+volumes:
+  db_data:
+    driver: local
+  wp_content:
+    driver: local
+  ssh_config:
+    driver: local
+
+networks:
+  internal:
+    external: false
+  traefik:
+    external:
+      name: traefik
