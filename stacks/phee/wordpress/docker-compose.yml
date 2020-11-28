@@ -43,9 +43,12 @@ services:
       - USER_PASSWORD=${SSH_PASSWORD}
     volumes:
       - ssh_config:/config
+      - wp_content:/var/www/html/wp-content
     ports:
       - ${SSH_PORT}:2222
     restart: always
+    networks:
+      - internal
 
 volumes:
   db_data:
