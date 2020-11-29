@@ -12,7 +12,7 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
     networks:
-      - internal
+      - default
   wp:
     image: wordpress:latest
     volumes:
@@ -30,7 +30,7 @@ services:
       - "traefik.http.routers.${ID}.service=${ID}"
       - "traefik.http.routers.${ID}.tls.certresolver=leresolver"
     networks:
-      - internal
+      - default
       - traefik
   ssh:
     image: ghcr.io/linuxserver/openssh-server
@@ -41,6 +41,7 @@ services:
       - PASSWORD_ACCESS=true
       - USER_NAME=${ID}
       - USER_PASSWORD=${SSH_PASSWORD}
+      - DOCKER_MODS=linuxserver/mods:openssh-server-ssh-tunnel
     volumes:
       - ssh_config:/config
       - wp_content:/var/www/html/wp-content
@@ -48,7 +49,7 @@ services:
       - ${SSH_PORT}:2222
     restart: always
     networks:
-      - internal
+      - default
 
 volumes:
   db_data:
@@ -59,7 +60,7 @@ volumes:
     driver: local
 
 networks:
-  internal:
+  default:
     external: false
   traefik:
     external:
