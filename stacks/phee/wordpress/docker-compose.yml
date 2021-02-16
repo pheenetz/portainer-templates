@@ -46,7 +46,7 @@ services:
       - ssh_config:/config
       - wp_content:/var/www/html/wp-content
     ports:
-      - ${SSH_PORT}:2222
+      - 2222
     restart: always
     networks:
       - default
