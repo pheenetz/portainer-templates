@@ -904,8 +904,8 @@
         },
         {
           "name": "PMA_USERS",
-          "label": "phpMyAdmin Users # echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g",
-          "description": "Make it strong, this port is exposed to the internet."
+          "label": "phpMyAdmin Users",
+          "description": "echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g"
         }
       ]
     },
