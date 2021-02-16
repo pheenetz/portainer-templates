@@ -885,7 +885,7 @@
         {
           "name": "HOST",
           "label": "Host",
-          "description": "e.g. my-wordpress-site.06.phee.host"
+          "description": "e.g. my-wordpress-site.06.phee.host, also listens to www.$HOST"
         },
         {
           "name": "ID",
@@ -904,8 +904,15 @@
         },
         {
           "name": "PMA_USERS",
-          "label": "phpMyAdmin Users",
-          "description": "echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g"
+          "label": "phpMyAdmin Users # echo $(htpasswd -nb user password)"
+        },
+        {
+          "name": "CODE_HOST",
+          "label": "Visual Studio Code"
+        },
+        {
+          "name": "CODE_USERS",
+          "label": "Visual Studio Code Users # echo $(htpasswd -nb user password)"
         }
       ]
     },
