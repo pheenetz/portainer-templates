@@ -871,9 +871,9 @@
     },
     {
       "type": 3,
-      "title": "phee - Wordpress",
-      "description": "Wordpress setup with a MySQL database and reverse proxy",
-      "note": "Deploys a Wordpress instance connected to a MySQL database.",
+      "title": "phee - Wordpress Stack",
+      "description": "Wordpress, MariaDB, SSH-Server and phpMyAdmin",
+      "note": "",
       "categories": ["CMS"],
       "platform": "linux",
       "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/wordpress.png",
@@ -903,9 +903,9 @@
           "description": "Make it strong, this port is exposed to the internet."
         },
         {
-          "name": "SSH_PORT",
-          "label": "SSH-Port",
-          "description": "SSH-Port between 30000 and 31000"
+          "name": "PMA_USERS",
+          "label": "phpMyAdmin Users # echo $(htpasswd -nb user password) | sed -e s/\\$/\\$\\$/g",
+          "description": "Make it strong, this port is exposed to the internet."
         }
       ]
     },
