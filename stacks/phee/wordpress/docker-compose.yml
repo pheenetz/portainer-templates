@@ -28,7 +28,7 @@ services:
       - "traefik.http.routers.${ID}-wp.service=${ID}-wp"
       - "traefik.http.routers.${ID}-wp.tls.certresolver=leresolver"
     volumes:
-      - wp_content:/var/www/html/wp-content
+      - www_data:/var/www/html
     networks:
       - default
       - traefik
@@ -45,7 +45,7 @@ services:
       - DOCKER_MODS=linuxserver/mods:openssh-server-ssh-tunnel
     volumes:
       - ssh_config:/config
-      - wp_content:/var/www/html/wp-content
+      - www_data:/var/www/html
     ports:
       - 2222
     networks:
@@ -55,8 +55,8 @@ services:
     restart: unless-stopped
     environment:
       - PMA_HOST=db
-      - PMA_USER=root
-      - PMA_PASSWORD=${MYSQL_DATABASE_PASSWORD}
+      - PMA_USER=${ID}
+      - PMA_PASSWORD=${DB_PASSWORD}
       - PMA_ABSOLUTE_URI=https://${HOST}/__db
       - UPLOAD_LIMIT=300M
     networks:
@@ -82,7 +82,7 @@ services:
       - TZ=Europe/Berlin
     volumes:
       - code_config:/config
-      - wp_content:/config/workspace/wp-content
+      - www_data:/config/workspace/www_data
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.${ID}-code.rule=Host(`${CODE_HOST}`)"
@@ -97,9 +97,9 @@ services:
       - traefik
 
 volumes:
-  db_data:
+  www_data:
     driver: local
-  wp_content:
+  db_data:
     driver: local
   ssh_config:
     driver: local

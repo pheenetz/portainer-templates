@@ -907,7 +907,7 @@
         },
         {
           "name": "CODE_HOST",
-          "label": "Visual Studio Code"
+          "label": "Visual Studio Code Host"
         },
         {
           "name": "CODE_USERS",
