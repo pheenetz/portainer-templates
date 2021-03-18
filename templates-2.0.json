@@ -890,12 +890,11 @@
         {
           "name": "ID",
           "label": "ID",
-          "description": "/[A-Za-z0-9]*/ unique, also SSH-Username"
+          "description": "/[A-Za-z0-9]*/ unique, also SSH-Username, DB-Name and DB-User"
         },
         {
-          "name": "MYSQL_DATABASE_PASSWORD",
-          "label": "Database root password",
-          "description": "Password used by the MySQL root user."
+          "name": "DB_PASSWORD",
+          "label": "Database password"
         },
         {
           "name": "SSH_PASSWORD",

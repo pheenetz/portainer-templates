@@ -5,10 +5,10 @@ services:
     image: mariadb:10.5
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_DATABASE_PASSWORD}
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+      MYSQL_DATABASE: ${ID}
+      MYSQL_USER: ${ID}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_RANDOM_ROOT_PASSWORD: "1"
     volumes:
       - db_data:/var/lib/mysql
     networks:
@@ -57,6 +57,8 @@ services:
       - PMA_HOST=db
       - PMA_USER=root
       - PMA_PASSWORD=${MYSQL_DATABASE_PASSWORD}
+      - PMA_ABSOLUTE_URI=https://${HOST}/__db
+      - UPLOAD_LIMIT=300M
     networks:
       - default
       - traefik
